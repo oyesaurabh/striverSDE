@@ -42,12 +42,14 @@ int maxSubArray(vector<int>& nums) {
 
 ```cpp
 int maxSubArray(vector<int>& nums) {
-    int n = nums.size(), maxi = nums[0], sum=nums[0];
-    for(int i=1; i<n; i++) {
-        if(sum<0) sum=0;
-        sum += nums[i];
-        maxi = max(maxi, sum);
-    }
-    return maxi;
+        int sum,t;
+        sum=t=nums[0];
+        for(int i=1;i<nums.size();i++){
+            if(sum<0)sum=nums[i];
+            else sum+=nums[i];
+            
+            t=max(t,sum);
+        }
+        return t;
 }
 ```

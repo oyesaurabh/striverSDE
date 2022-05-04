@@ -35,18 +35,16 @@ void sortColors(vector<int>& nums) {
 ## Approach 3 [ O(N) ]
 
 ```cpp
-void sortColors(vector<int>& nums) {
-    int n = nums.size(), l = 0, r = n-1, m=0;
-    while(m <= r) {
-        if(nums[m] == 0) {
-            swap(nums[l], nums[m]);
-            l++, m++;
-        } else if (nums[m] == 2) {
-            swap(nums[m], nums[r]);
-            r--;
-        } else {
-            m++;
+    void sortColors(vector<int>& a) {
+        //dutch national flag ALgo
+        int l=0,m=0,h=a.size()-1;
+        while(m<=h){
+            if(a[m]==0)
+                swap(a[l++],a[m++]);
+            else if(a[m]==1)
+                m++;
+            else
+                swap(a[m],a[h--]);
         }
     }
-}
 ```

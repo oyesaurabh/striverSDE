@@ -32,12 +32,13 @@ Time complexity : O(N)
 Space complexity : O(1)
 
 ```cpp
-int maxProfit(vector<int>& prices) {
-    int res=0, n=prices.size(), mn=prices[0];
-    for(int i=1; i<n; i++) {
-        res = max(res, prices[i]-mn);
-        mn = min(mn, prices[i]);
-    }
-    return res;
+int maxProfit(vector<int>& a) {
+        int profit=0;
+        int buy=a[0];
+        for(int i=1;i<a.size();i++){
+            profit=max(profit,a[i]-buy);
+            buy=min(buy,a[i]);
+        }
+        return profit;
 }
 ```

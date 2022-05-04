@@ -42,45 +42,33 @@ void nextPermutation(vector<int>& nums) {
 Time complexity : O(N)  
 Space complexity : O(1)
 
-```cpp
+```cpp    
+
+int findPeak(vector<int> a){
+        for(int i=a.size()-1;i>0;i--)
+            if(a[i-1]<a[i])return i;
+        return 0;
+    }
+int successorOfPivot(vector<int> a,int p){
+        int i=a.size()-1;
+        while(a[i]<=p)i--;
+        return i;
+    }
+
 void nextPermutation(vector<int>& nums) {
-    int x=-1, y=-1, n=nums.size(), i;
-    for(i=n-2; i>=0; i--) {
-        if(nums[i]<nums[i+1]) {
-            x=i;
-            break;
+        int i=findPeak(nums);
+        if(i==0){ 
+            reverse(nums.begin(),nums.end());
+            return;
         }
+        int pivot=nums[i-1];
+        int j=successorOfPivot(nums,pivot);
+        swap(nums[i-1],nums[j]);
+        reverse(nums.begin()+i,nums.end());
     }
-    if(x==-1) {
-        reverse(nums.begin(), nums.end());
-        return;
-    }
-    for(i=n-1; i>=0; i--) {
-        if(nums[i]>nums[x]) {
-            y=i;
-            break;
-        }
-    }
-    swap(nums[x], nums[y]);
-    reverse(nums.begin()+x+1, nums.end());
-}
 ```
 
-## Approach 3 (Using STL with above approach)
-
-Time complexity : O(N)  
-Space complexity : O(1)
-
-```cpp
-void nextPermutation(vector<int>& nums) {
-    auto i = is_sorted_until(nums.rbegin(), nums.rend());
-    if (i != nums.rend())
-        swap(*i, *upper_bound(nums.rbegin(), i, *i));
-    reverse(nums.rbegin(), i);
-}
-```
-
-## Approach 4 (Using STL, not for Interviews)
+## Approach 3 (Using STL, not for Interviews)
 
 Time complexity : O(N)  
 Space complexity : O(1)

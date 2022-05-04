@@ -14,16 +14,20 @@ Space complexity : O(N\*N)
 
 ```cpp
 vector<vector<int>> generate(int numRows) {
-    vector<vector<int>> res(numRows);
-    for(int i=0; i<numRows; i++) {
-        res[i].resize(i+1);
-        res[i][0] = res[i][i] = 1;
-        for(int j=1; j<i; j++)
-            res[i][j] = res[i-1][j-1] + res[i-1][j];
+    vector<vector<int>> res;
+        res.push_back({1});
+        for(int i=1; i<numRows; i++){
+            vector<int> temp;
+            temp.push_back(1);
+            for(int j=0; j<i-1; j++){
+                temp.push_back(res[i-1][j]+res[i-1][j+1]);
+            }
+            temp.push_back(1);
+            res.push_back(temp);
+        }
+        return res;
     }
-    return res;
-}
-```
+``` 
 
 ## Problem 2
 
@@ -40,13 +44,13 @@ Time complexity : O(N)
 Space complexity : O(1)
 
 ```cpp
-int getPascalElement(int row, int col) {
-    int res=1;
-    for(int j=1; j<col; j++)
-        res *= --row;
-    while(--col) res /= col;
-    return res;
-}
+    int getPascalElement(int row, int col) {
+        int res=1;
+        for(int j=1; j<col; j++)
+            res *= --row;
+        while(--col) res /= col;
+        return res;
+    }
 ```
 
 ## Problem 3
@@ -59,16 +63,32 @@ Time complexity : O(N)
 Space complexity : O(N)
 
 ```cpp
-vector<int> getPascalRow(int row) {
-    int n = row;
-    vector<int> res(n);
-    res[0] = res[n-1] = 1;
-    int numerator = 1, denominator=1;
-    for(int col=2; col<n; col++) {
-        numerator *= (--row);
-        denominator *= (col-1);
-        res[col-1] = (numerator/denominator);
+    vector<int> getRow(int row) {
+        // row++ if index starts from 0
+        int n = row;
+        vector<int> res(n);
+        res[0] = res[n-1] = 1;
+        long long int numerator = 1, denominator=1;
+        for(int col=1; col<n-1; col++) {
+            numerator *= (--row);
+            denominator *= (col);
+            res[col] = (numerator/denominator);
+        }
+        return res;
     }
-    return res;
-}
+```
+int overflow in leetcode so..
+Time complexity : O(N\*n)  
+Space complexity : O(N)
+``` cpp
+
+    vector<int> getRow(int row) {
+        // row++ if index starts from 0
+        vector<int> A(row, 0);
+        A[0] = 1;
+        for(int i=1; i<row; i++)
+            for(int j=i; j>=1; j--)
+                A[j] += A[j-1];
+        return A;
+    }
 ```
