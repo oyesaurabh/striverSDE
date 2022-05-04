@@ -7,8 +7,8 @@ Given an m x n integer matrix, if an element is 0, set its entire row and column
 
 ## Approach 1 (Using 2d matrix)
 
-Time complexity : O(M\*N\*(M+N))  
-Space complexity : O(M\*N)
+Time complexity : O(M*N*(M+N))  
+Space complexity : O(M*N)
 
 ```cpp
 void setZeroes(vector<vector<int>>& matrix) {
