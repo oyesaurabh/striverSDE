@@ -7,8 +7,8 @@ Given an m x n integer matrix, if an element is 0, set its entire row and column
 
 ## Approach 1 (Using 2d matrix)
 
-Time complexity : O(M*N*(M+N))  
-Space complexity : O(M*N)
+Time complexity : O(M\*N\*(M+N))  
+Space complexity : O(M\*N)
 
 ```cpp
 void setZeroes(vector<vector<int>>& matrix) {
@@ -30,7 +30,7 @@ void setZeroes(vector<vector<int>>& matrix) {
 }
 ```
 ## Approach 2 (constant space)
-Time complexity : O(M*N*(M+N))  
+Time complexity : O(M\*N\*(M+N))  
 Space complexity : O(1)
 
 wont be accepted on leetcode becoz input can also contain -1
@@ -59,7 +59,7 @@ void setZeroes(vector<vector<int>>& matrix) {
 ```
 ## Approach 3 (Using two 1d matrix)
 
-Time complexity : O(M*N)  
+Time complexity : O(M\*N)  
 Space complexity : O(M+N)
 
 ```cpp
@@ -84,7 +84,7 @@ void setZeroes(vector<vector<int>>& matrix) {
 
 ## Approach 4 (Constant space)
 
-Time complexity : O(M*N)  
+Time complexity : O(M\*N)  
 Space complexity : O(1)
 
 ```cpp
@@ -93,22 +93,22 @@ void setZeroes(vector<vector<int>>& matrix) {
     bool fr=0, fc=0;
     for(i=0; i<m; i++) if(matrix[i][0]==0) fc=1;
     for(j=0; j<n; j++) if(matrix[0][j]==0) fr=1;
-    for(i=1; i<m; ++i) {
-        for(j=1; j<n; ++j) {
+    for(i=1; i<m; ++i) 
+        for(j=1; j<n; ++j) 
             if(matrix[i][j] == 0)
                 matrix[i][0]=matrix[0][j]=0;
-        }
-    }
-    for(i=1; i<m; i++) {
+        
+    
+    for(i=1; i<m; i++) 
         if(matrix[i][0]==0)
             for(j=1; j<n; j++)
                 matrix[i][j]=0;
-    }
-    for(j=1; j<n; j++) {
+    
+    for(j=1; j<n; j++) 
         if(matrix[0][j]==0)
             for(i=1; i<m; i++)
                 matrix[i][j]=0;
-    }
+    
     if(fc) for(i=0; i<m; i++) matrix[i][0]=0;
     if(fr) for(j=0; j<n; j++) matrix[0][j]=0;
 }
@@ -116,24 +116,26 @@ void setZeroes(vector<vector<int>>& matrix) {
 
 ## Approach 5 (Most optimized, complexity same as above)
 
-Time complexity : O(M*N)  
+Time complexity : O(M\*N)  
 Space complexity : O(1)
 
 ```cpp
 void setZeroes(vector<vector<int>>& matrix) {
-    int i, j, m=matrix.size(), n=matrix[0].size();
+    int i, j, n=matrix.size(), m=matrix[0].size();
     bool col0=0;
-    for(i=0; i<m; i++) {
-        if(matrix[i][0]==0) col0 = 1;
-        for(j=1; j<n; j++)
+    for(i=0; i<n; i++) {
+        if(matrix[i][0]==0) 
+            col0 = 1;
+        for(j=1; j<m; j++)
             if(matrix[i][j]==0)
                 matrix[i][0] = matrix[0][j] = 0;
     }
-    for(i=m-1; ~i; i--) {
-        for(j=n-1; j>0; j--)
+    for(i=n-1; i>=0; i--) {
+        for(j=m-1; j>0; j--)
             if(matrix[i][0]==0 || matrix[0][j]==0)
                 matrix[i][j]=0;
-        if(col0) matrix[i][0]=0;
+        if(col0) 
+            matrix[i][0]=0;
     }
 }
 ```
