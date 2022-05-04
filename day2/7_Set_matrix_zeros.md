@@ -14,25 +14,52 @@ Space complexity : O(M*N)
 void setZeroes(vector<vector<int>>& matrix) {
     int i, j, p, q, m=matrix.size(), n=matrix[0].size();
     vector<vector<int>> z(m, vector<int>(n, 1));
-    for(i=0; i<m; i++) {
-        for(j=0; j<n; j++) {
+    for(i=0; i<m; i++) 
+        for(j=0; j<n; j++) 
             if(matrix[i][j]==0) {
                 for(p=0; p<m; p++) z[p][j]=0;
                 for(q=0; q<n; q++) z[i][q]=0;
             }
-        }
-    }
-    for(i=0; i<m; i++) {
-        for(j=0; j<n; j++) {
+        
+    
+    for(i=0; i<m; i++) 
+        for(j=0; j<n; j++) 
             matrix[i][j] *= z[i][j];
-        }
-    }
+        
+    
 }
 ```
+## Approach 2 (constant space)
+Time complexity : O(M*N*(M+N))  
+Space complexity : O(1)
 
-## Approach 2 (Using two 1d matrix)
+wont be accepted on leetcode becoz input can also contain -1
 
-Time complexity : O(M\*N)  
+```cpp
+void setZeroes(vector<vector<int>>& matrix) {
+    int n=matrix.size();
+    int m=matrix[0].size();
+    //set entire R and C -1 except for zero
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+            if(matrix[i][j]==0){
+                for(int p=0;p<n;p++)
+                    if(matrix[p][j])
+                        matrix[p][j]=-1;
+                for(int q=0;q<m;q++)
+                    if(matrix[i][q])
+                        matrix[i][q]=-1;
+            }
+    for(auto &it:matrix)
+        for(auto &i:it)
+            if(i==-1)i=0;
+
+    return matrix;
+}
+```
+## Approach 3 (Using two 1d matrix)
+
+Time complexity : O(M*N)  
 Space complexity : O(M+N)
 
 ```cpp
@@ -40,24 +67,24 @@ void setZeroes(vector<vector<int>>& matrix) {
     int i, j, m=matrix.size(), n=matrix[0].size();
     vector<int> row(m, -1);
     vector<int> col(n, -1);
-    for(i=0; i<m; i++) {
-        for(j=0; j<n; j++) {
+    for(i=0; i<m; i++) 
+        for(j=0; j<n; j++) 
             if(matrix[i][j]==0)
                 row[i] = col[j] = 0;
-        }
-    }
-    for(i=0; i<m; i++) {
-        for(j=0; j<n; j++) {
+        
+    
+    for(i=0; i<m; i++) 
+        for(j=0; j<n; j++) 
             if(row[i]==0 || col[j]==0)
                 matrix[i][j]=0;
-        }
-    }
+        
+    
 }
 ```
 
-## Approach 3 (Constant space)
+## Approach 4 (Constant space)
 
-Time complexity : O(M\*N)  
+Time complexity : O(M*N)  
 Space complexity : O(1)
 
 ```cpp
@@ -87,9 +114,9 @@ void setZeroes(vector<vector<int>>& matrix) {
 }
 ```
 
-## Approach 4 (Most optimized, complexity same as above)
+## Approach 5 (Most optimized, complexity same as above)
 
-Time complexity : O(M\*N)  
+Time complexity : O(M*N)  
 Space complexity : O(1)
 
 ```cpp
