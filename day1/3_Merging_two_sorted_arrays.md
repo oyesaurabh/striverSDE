@@ -1,4 +1,6 @@
 [Question link](https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/)
+<br>
+[Another One](https://leetcode.com/problems/merge-sorted-array/)
 # Merge two sorted arrays
 
 ## Problem statement
