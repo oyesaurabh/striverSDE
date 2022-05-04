@@ -1,3 +1,5 @@
+[Question link](https://leetcode.com/problems/next-permutation/)
+[Another_link](// https://www.nayuki.io/page/next-lexicographical-permutation-algorithm)
 # Next Permutation
 
 ## Problem statement

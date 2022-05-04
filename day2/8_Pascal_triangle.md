@@ -1,3 +1,4 @@
+[Question link](https://leetcode.com/problems/pascals-triangle/)
 # Pascal's triangle
 
 ![Pascal's triangle](https://upload.wikimedia.org/wikipedia/commons/0/0d/PascalTriangleAnimated2.gif)

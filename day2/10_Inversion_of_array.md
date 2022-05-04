@@ -1,3 +1,5 @@
+[Question Link](https://www.geeksforgeeks.org/counting-inversions/)
+[Another one](https://leetcode.com/problems/global-and-local-inversions/discuss/242101/Count-inversions)
 # Inversion of array
 
 ## Problem statement

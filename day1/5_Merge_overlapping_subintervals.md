@@ -1,4 +1,4 @@
-[Link text Here](https://leetcode.com/problems/merge-intervals/)
+[Question link](https://leetcode.com/problems/merge-intervals/)
 # Merge overlapping subintervals
 
 ## Problem statement

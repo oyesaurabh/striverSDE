@@ -1,4 +1,4 @@
-[Link text Here](https://leetcode.com/problems/maximum-subarray/)
+[Question link](https://leetcode.com/problems/maximum-subarray/)
 # Maximum subarray sum
 
 ## Problem statement

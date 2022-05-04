@@ -1,4 +1,4 @@
-[link here](https://leetcode.com/problems/find-the-duplicate-number/)
+[Question link](https://leetcode.com/problems/find-the-duplicate-number/)
 # Find the duplicate number
 
 ## Problem statement

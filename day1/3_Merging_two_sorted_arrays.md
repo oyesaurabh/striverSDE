@@ -1,4 +1,4 @@
-[Link text Here](https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/)
+[Question link](https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/)
 # Merge two sorted arrays
 
 ## Problem statement

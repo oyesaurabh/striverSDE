@@ -1,4 +1,4 @@
-[Link text Here](https://leetcode.com/problems/sort-colors/)
+[Question link](https://leetcode.com/problems/sort-colors/)
 # Sort an array of 0’s 1’s 2’s
 
 ## Approach 1 [ O(N\*log(n)) ]

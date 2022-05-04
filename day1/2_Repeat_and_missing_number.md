@@ -1,4 +1,4 @@
-[Link text Here](https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/)
+[Question link](https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/)
 
 # Find the repeating and the missing number in an array
 
