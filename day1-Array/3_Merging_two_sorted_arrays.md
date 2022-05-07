@@ -1,6 +1,6 @@
-[Question link](https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/)
+[Question link](https://leetcode.com/problems/merge-sorted-array/)
 <br>
-[Another One](https://leetcode.com/problems/merge-sorted-array/)
+[Another One](https://www.geeksforgeeks.org/merge-two-sorted-arrays-o1-extra-space/)
 # Merge two sorted arrays
 
 ## Problem statement
@@ -54,9 +54,9 @@ void merge(long long arr1[], long long arr2[], int n, int m)
 }
 ```
 
-## Approach 3 (Two pointer and one time sort)
+## Approach 3 (Two pointer)
 
-Time complexity : O(N\*log(N)) + O(M\*log(M))  
+Time complexity : O(n + m)  
 Space complexity : O(1) (Ignoring space of sorting algo), otherwise O(N+M) due to merge sort
 
 ```cpp
@@ -80,21 +80,31 @@ Time complexity : O((N+M)\*log(N+M))
 Space complexity : O(1)
 
 ```cpp
-int nextGap(int gap) {
-    if(gap <=1) return 0;
-    return (gap / 2) + (gap % 2);
-}
-void merge(long long arr1[], long long arr2[], int n, int m)
-{
-    int sz = n+m, gap = nextGap(sz);
-    while(gap) {
-        for(int i = 0, j = i+gap; j<sz; i++, j++) {
-            long long *x = i<n? arr1+i : arr2+i-n;
-            long long *y = j<n? arr1+j : arr2+j-n;
-            if(*x > *y)
-                swap(*x, *y);
-        }
-        gap = nextGap(gap);
+    int nextGap(int gap){
+        if (gap <= 1)
+            return 0;
+        return ceil(gap/2.0);
     }
-}
+        
+    void merge(long long a[], long long b[], int n, int m) {
+        
+        long long gap=n+m;
+        for (gap = nextGap(gap);gap > 0; gap = nextGap(gap)){
+            //for Array A
+        long long i,j;
+        for(i=0;i+gap<n;i++)
+            if(a[i]>a[i+gap])
+                swap(a[i],a[i+gap]);
+            
+        //for Array A and  B
+        for (j = gap > n ? gap - n : 0;i < n && j < m;i++, j++)
+            if (a[i] > b[j])
+                swap(a[i], b[j]);
+                    
+        //for Array B
+        for(j=0;j+gap<m;j++)
+            if(b[j]>b[j+gap])
+                swap(b[j],b[j+gap]);
+        }
+    }
 ```

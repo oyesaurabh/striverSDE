@@ -28,13 +28,14 @@ Time complexity : O(N)
 Space complexity : O(N)
 
 ```cpp
-int findDuplicate(vector<int>& nums) {
-    int n = nums.size();
-    vector<int> freq(n+1, 0);
-    for(int &i:nums) freq[i]++;
-    for(int i=0; i<n+1; i++)
-        if(freq[i]>1) return i;
-    return -1;
+int findDuplicate(vector<int>& a) {
+        int size=n.size();
+        vector<int> a(size,0);
+        for(int i=0;i<size;i++)
+            if(a[n[i]-1]==0)
+                a[n[i]-1]++;
+            else return n[i];
+        return -1;
 }
 ```
 
@@ -44,18 +45,56 @@ Time complexity : O(N)
 Space complexity : O(1)
 
 ```cpp
-int findDuplicate(vector<int>& nums) {
-    int tortoise = nums[0];
-    int hare = nums[0];
-    do {
-        tortoise = nums[tortoise];
-        hare = nums[nums[hare]];
-    } while(tortoise != hare);
-    tortoise = nums[0];
-    while(tortoise != hare) {
-        tortoise = nums[tortoise];
-        hare = nums[hare];
+    int findDuplicate(vector<int>& n) {
+        //linked list cycle method
+        int slow = n[0];
+        int fast=n[0];
+        do{
+            slow=n[slow];
+            fast=n[n[fast]];
+        }while(slow!=fast);
+        fast=n[0];
+        while(fast != slow){
+            fast=n[fast];
+            slow=n[slow];
+        }
+        return slow;
     }
-    return tortoise;
+```
+
+## Approach 4 ( negative marking )
+Time complexity : O(N)  
+Space complexity : O(1)
+
+```cpp
+int findDuplicate(vector<int>& nums) {
+        //negative marking
+        int n=nums.size();
+        for(int i=0;i<n;i++)
+            if(nums[abs(nums[i])] >= 0 )
+                nums[abs(nums[i]) ]*=-1;
+            else
+                return abs(nums[i]);
+        return -1;
 }
 ```
+
+## Approach 4 ( cycle sort )
+Time complexity : O(N)  
+Space complexity : O(1)
+
+```cpp
+int findDuplicate(vector<int>& a) {
+        //cycle sort
+        for(int i=0;i<a.size();i++)
+            while( a[a[i]-1] != a[i] )
+                swap(a[a[i]-1],a[i]);
+         
+        //searching element which are not in correct index
+        for(int i=0;i<a.size();i++)
+            if(a[i]-1 != i)
+                return a[i];
+        return 32423;  //can return any thing... non-reachable code
+}
+```
+

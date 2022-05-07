@@ -16,7 +16,7 @@ vector<vector<int>> merge(vector<vector<int>>& a) {
         sort(a.begin(),a.end());
         for(int i=0;i<n;i++){
             vector<int> t=a[i];
-            if(!ans.empty() && t[0]<=ans.back()[1])continue;
+            if(!ans.empty() && t[0]<=ans.back()[1])continue;  //checking if element already merged
             for(int j=i+1;j<n;j++){
                 if(t[1]>=a[j][0])
                     t[1]=max(a[j][1],t[1]);
