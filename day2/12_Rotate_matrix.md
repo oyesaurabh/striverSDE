@@ -50,12 +50,19 @@ Time complexity : O(N^2)
 Space complexity : O(1)
 
 ```cpp
-void rotate(vector<vector<int>>& matrix) {
-    int n = matrix.size(), i, j;
-    for(i=0; i<n; i++)
-        for(j=i+1; j<n; j++)
-            swap(matrix[i][j], matrix[j][i]);
-    for(auto &vi : matrix) reverse(vi.begin(), vi.end());
+void rotate(vector<vector<int>>& a) {
+    int n=a.size();
+    int m=a[0].size();
+    for(int i=0;i<n;i++){
+        //transpose
+        for(int j=i;j<m;j++)
+            swap(a[i][j],a[j][i]);
+    }
+        
+    //swap column
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m/2;j++)
+            swap(a[i][j],a[i][m-j-1]);
 }
 ```
 
