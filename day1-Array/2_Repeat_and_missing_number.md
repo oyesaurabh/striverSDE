@@ -1,4 +1,4 @@
-[Question link](https://www.geeksforgeeks.org/find-a-repeating-and-a-missing-number/)
+[Question link](https://practice.geeksforgeeks.org/problems/find-missing-and-repeating2512/1/)
 
 # Find the repeating and the missing number in an array
 
@@ -6,52 +6,33 @@
 
 Given an unsorted array of size n. Array elements are in the range from 1 to n. One number from set {1, 2, …n} is missing and one number occurs twice in the array. Find these two numbers.
 
-## Approach 1 (Brute force)
-
-Time complexity : O(N\*log(n))  
-Space complexity : O(1)
-
-```cpp
-int *findTwoElement(int *arr, int n) {
-    int missingNum=n, duplicateNum;
-    sort(arr, arr+n);
-    for(int i=0, j=1, f=1; i<n; i++, j++) {
-        if(i > 0 && arr[i] == arr[i-1])
-            duplicateNum = arr[i], j--;
-        else if(f && arr[i] != j)
-            missingNum = j, f = 0;
-    }
-    int *res = new int[2];
-    res[0] = duplicateNum;
-    res[1] = missingNum;
-    return res;
-}
-```
-
-## Approach 2 (Extra array)
+## Approach 1 (Extra array, count sort)
 
 Time complexity : O(N)  
 Space complexity : O(N)
 
 ```cpp
-int *findTwoElement(int *arr, int n) {
-    bool f[n+1] = {0};
-    long missingNum, duplicateNum;
-    for(int i=0; i<n; i++) {
-        if(!f[arr[i]]) f[arr[i]]=true;
-        else duplicateNum = arr[i];
+vector<int> find_missing_repeating(vector<int> array)
+{
+    int n = array.size() + 1;
+    vector<int> substitute(n, 0); // initializing the substitute array with 0 of size n+1.
+    vector<int> ans;              // initializing the answer  array .
+    for (int i = 0; i < array.size(); i++)
+    {
+        substitute[array[i]]++;
     }
-    for(int i=1; i<=n; i++)
-        if(!f[i])
-            missingNum = i;
-    int *res = new int[2];
-    res[0] = duplicateNum;
-    res[1] = missingNum;
-    return res;
+    for (int i = 1; i <= array.size(); i++)
+    {
+        if (substitute[i] == 0 || substitute[i] > 1)
+        {
+            ans.push_back(i);
+        }
+    }
+    return ans;
 }
 ```
 
-## Approach 3 (Mathematics)
+## Approach 2 (Mathematics)
 
 Time complexity : O(N)  
 Space complexity : O(1)  
@@ -77,7 +58,7 @@ int *findTwoElement(int *arr, int n) {
 }
 ```
 
-## Approach 4 (Xor)
+## Approach 3 (Xor)
 
 Time complexity : O(N)  
 Space complexity : O(1)

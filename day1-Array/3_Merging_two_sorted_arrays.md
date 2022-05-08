@@ -52,59 +52,42 @@ void merge(long long arr1[], long long arr2[], int n, int m)
         }
     }
 }
-```
 
-## Approach 3 (Two pointer)
 
-Time complexity : O(n + m)  
-Space complexity : O(1) (Ignoring space of sorting algo), otherwise O(N+M) due to merge sort
+## Approach 3 (Gap method)
 
-```cpp
-void merge(long long arr1[], long long arr2[], int n, int m)
-{
-    int i=n-1, j=0;
-    while(i>=0 && j<m) {
-        if(arr1[i] > arr2[j])
-            swap(arr1[i--], arr2[j++]);
-        else
-            break;
-    }
-    sort(arr1, arr1+n);
-    sort(arr2, arr2+m);
-}
-```
-
-## Approach 4 (Gap method)
-
-Time complexity : O((N+M)\*log(N+M))  
+Time complexity : O((N+M)\*log(N+M)) or O(N\*logN)
 Space complexity : O(1)
 
 ```cpp
-    int nextGap(int gap){
+int nextGap(int gap){
         if (gap <= 1)
             return 0;
         return ceil(gap/2.0);
     }
         
-    void merge(long long a[], long long b[], int n, int m) {
+void merge(long long a[], long long b[], int n, int m) {
         
         long long gap=n+m;
-        for (gap = nextGap(gap);gap > 0; gap = nextGap(gap)){
+        gap = nextGap(gap);
+        while (gap > 0){
             //for Array A
-        long long i,j;
-        for(i=0;i+gap<n;i++)
-            if(a[i]>a[i+gap])
-                swap(a[i],a[i+gap]);
+            long long i,j;
+            for(i=0;i+gap<n;i++)
+                if(a[i]>a[i+gap])
+                    swap(a[i],a[i+gap]);
+                
+            //for Array A and  B
+            for (j = 0;i < n && j < m;i++, j++)
+                if (a[i] > b[j])
+                    swap(a[i], b[j]);
+                        
+            //for Array B
+            for(j=0;j+gap<m;j++)
+                if(b[j]>b[j+gap])
+                    swap(b[j],b[j+gap]);
             
-        //for Array A and  B
-        for (j = gap > n ? gap - n : 0;i < n && j < m;i++, j++)
-            if (a[i] > b[j])
-                swap(a[i], b[j]);
-                    
-        //for Array B
-        for(j=0;j+gap<m;j++)
-            if(b[j]>b[j+gap])
-                swap(b[j],b[j+gap]);
-        }
+             gap = nextGap(gap);
+            }
     }
 ```
