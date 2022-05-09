@@ -32,24 +32,47 @@ Time complexity : O(N*long(N))
 Space complexity : O(N)
 
 ```cpp
-long long mergeCount(long long arr[], long long temp[], long long start, long long end) {
-    if(start == end) return 0;
-    long long c, i, j, k, mid=start+(end-start)/2;
-    c = mergeCount(arr, temp, start, mid) + mergeCount(arr, temp, mid+1, end);
-    for(i=start, j=mid+1, k=0; i<=mid && j<=end; k++) {
-        if(arr[i]<=arr[j]) temp[k]=arr[i++];
-        else {
-            c+=(mid-i+1);
-            temp[k]=arr[j++];
+long long merge(long long arr[],long long temp[],long long left,long long mid,long long right){
+    long long inv_count=0;
+    long long i = left;
+    long long j = mid;
+    long long k = left;
+    while((i <= mid-1) && (j <= right))
+        if(arr[i] <= arr[j])
+            temp[k++] = arr[i++];
+        
+        else{
+            temp[k++] = arr[j++];
+            inv_count = inv_count + (mid - i);
         }
+
+    while(i <= mid - 1)
+        temp[k++] = arr[i++];
+
+    while(j <= right)
+        temp[k++] = arr[j++];
+
+    for(i = left ; i <= right ; i++)
+        arr[i] = temp[i];
+    
+    return inv_count;
+}
+
+long long merge_Sort(long long arr[],long long temp[],long long left,long long right){
+    long long mid,inv_count = 0;
+    if(right > left){
+        mid = (left + right)>>1;
+
+        inv_count += merge_Sort(arr,temp,left,mid);
+        inv_count += merge_Sort(arr,temp,mid+1,right);
+
+        inv_count += merge(arr,temp,left,mid+1,right);
     }
-    while(i<=mid) temp[k++] = arr[i++];
-    while(j<=end) temp[k++] = arr[j++];
-    for(i=start, k=0; i<=end; i++, k++) arr[i]=temp[k];
-    return c;
+    return inv_count;
 }
 long long int inversionCount(long long arr[], long long N) {
-    long long temp[N], start=0, end=N-1;
-    return mergeCount(arr, temp, start, end);
+    long long temp[N];
+    return merge_Sort(arr,temp,0,N-1);
+    
 }
 ```
