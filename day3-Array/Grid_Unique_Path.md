@@ -1,4 +1,4 @@
-[question lik](https://leetcode.com/problems/unique-paths/)
+[question link](https://leetcode.com/problems/unique-paths/)
 
 # unique paths
 
@@ -7,14 +7,14 @@ There is a robot on an m x n grid. The robot is initially located at the top-lef
 
 Given the two integers m and n, return the number of possible unique paths that the robot can take to reach the bottom-right corner.
 
+![image](https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png)<br>
 Example 1:
-![image](https://assets.leetcode.com/uploads/2018/10/22/robot_maze.png)
 Input: m = 3, n = 7
 Output: 28
 
 ## Approach 1 ( recursion ) 
-Time Complexity: O(2<sup>N) i.e. exexponential
-Space Complexity: O(2<sup>N) as we are using stack
+Time Complexity: O(2<sup>N</sup>) i.e. exexponential
+Space Complexity: O(2<sup>N</sup>) as we are using stack
 
 ```cpp
     int find(int i,int j,int m,int n){

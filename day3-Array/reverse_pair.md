@@ -1,4 +1,4 @@
-(question link)[https://leetcode.com/problems/reverse-pairs/]
+[question link](https://leetcode.com/problems/reverse-pairs/)
 
 # Reverse Pairs
 
