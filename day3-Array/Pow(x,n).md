@@ -56,7 +56,7 @@ double myPow(double x,int n){
         if(n==0 || x==1)return 1.0;
         n=abs(n);
         while(nn){
-            if(x&1)
+            if(n&1)
                 ans=ans*x,nn-=1;
             else
                 x=x*x,nn/=2;
