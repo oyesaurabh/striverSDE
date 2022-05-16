@@ -49,20 +49,20 @@ double myPow(double x, int n) {
          return ans;
     }
              OR
-double myPow(double x,int n){
+double myPow(double x,int nn){
         //iteration
         double ans=1.0;
-        long long nn=n;
+        long long n=nn;
         if(n==0 || x==1)return 1.0;
         n=abs(n);
-        while(nn){
-            if(x&1)
-                ans=ans*x,nn-=1;
+        while(n){
+            if(n&1)
+                ans=ans*x,n-=1;
             else
-                x=x*x,nn/=2;
+                x=x*x,n/=2;
 
         }
-        if(n<0)
+        if(nn<0)
             ans=1.0/ans;
         return ans;
 }
