@@ -94,7 +94,7 @@ int findDuplicate(vector<int>& a) {
         for(int i=0;i<a.size();i++)
             if(a[i]-1 != i)
                 return a[i];
-        return 32423;  //can return any thing... non-reachable code
+        return 69;  //can return any thing... non-reachable code
 }
 ```
 
