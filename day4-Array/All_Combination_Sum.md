@@ -58,15 +58,15 @@ Note: The solution set must not contain duplicate combinations.
         }
         if(t<0)return;
         for(int i=ind;i<l;i++){
-            if (i > ind && a[i] == a[i-1]) continue;          // remove this
+            if (i > ind && a[i] == a[i-1]) continue;          
             temp.push_back(a[i]);
-            fun(a,temp,i+1,t-a[i]);                            //and i instead of i+1
+            fun(a,temp,i+1,t-a[i]);                            
             temp.pop_back();
         }
     }
     vector<vector<int>> combinationSum2(vector<int>& a, int t) {
         l=a.size();
-        sort(a.begin(),a.end());                              // no need to sort also
+        sort(a.begin(),a.end());                              
         vector<int> temp;
         fun(a,temp,0,t);
         return ans;
