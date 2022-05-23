@@ -7,10 +7,11 @@
 Given an array of distinct integers candidates and a target integer target, return a list of all unique combinations of candidates where the chosen numbers sum to target. You may return the combinations in any order.
 
 The same number may be chosen from candidates an unlimited number of times. Two combinations are unique if the frequency of at least one of the chosen numbers is different.
-
->Example 1:
->Input: candidates = [2,3,6,7], target = 7
->Output: [[2,2,3],[7]]
+```
+Example 1:
+Input: candidates = [2,3,6,7], target = 7
+Output: [[2,2,3],[7]]
+```
 
 ## Solution
 
@@ -43,11 +44,11 @@ Given a collection of candidate numbers (candidates) and a target number (target
 Each number in candidates may only be used once in the combination.
 
 Note: The solution set must not contain duplicate combinations.
-
->Example 1:
->Input: candidates = [10,1,2,7,6,1,5], target = 8
->Output: [ [1,1,6], [1,2,5], [1,7], [2,6] ]
-
+```
+Example 1:
+Input: candidates = [10,1,2,7,6,1,5], target = 8
+Output: [ [1,1,6], [1,2,5], [1,7], [2,6] ]
+```
 ```cpp
     vector<vector<int>> ans;
     int l; 
@@ -77,11 +78,11 @@ Find all valid combinations of k numbers that sum up to n such that the followin
 Only numbers 1 through 9 are used.
 Each number is used at most once.
 Return a list of all possible valid combinations. The list must not contain the same combination twice, and the combinations may be returned in any order.
-
->Example 1:
->Input: k = 3, n = 7
->Output: [[1,2,4]]
-
+```
+Example 1:
+Input: k = 3, n = 7
+Output: [[1,2,4]]
+```
 ```cpp
     vector<vector<int>> ans;
     void help(vector<int>& t,int k,int n,int ind){
