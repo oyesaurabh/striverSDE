@@ -21,7 +21,7 @@ Space Complexity : O(1) as we aren’t using any extra space.
 ```cpp
 int maxLen(vector<int>&a, int n)
     {   
-        // TLE
+        // TLE as expected
         int ans=0;
         for(int i=0;i<n;i++){
             int s=0;
@@ -37,7 +37,21 @@ int maxLen(vector<int>&a, int n)
 Time Complexity: O(N), as we are traversing the array only once.
 <br>
 Space Complexity: O(N), in the worst case we would insert all array elements prefix sum into our hashmap.
-```cpp
 
+```cpp
+int maxLen(vector<int>&a, int n){
+    unordered_map<int ,int> m;
+    int sum=0,ans=0;
+    for(int i=0;i<n;i++){
+        sum+=a[i];
+        if(sum==0)
+            ans=max(ans,i+1);
+        else if(m.find(sum) == m.end() )
+            m[sum]=i;
+        else 
+            ans=max(ans,i-m[sum]);
+        }
+    return ans;
+}
 
 ```
