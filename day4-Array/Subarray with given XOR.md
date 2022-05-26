@@ -37,13 +37,12 @@ int Solution::solve(vector<int> &A, int B) {
 ```
 
 # Solution 2: Prefix xor and map
-main idea is :
+main idea is : (similar concept that we have used in largest subarray with 0 sum)
 ```
 y ^ k = prexor
 y ^ k ^ k = prexor ^ k
 y = prexor ^ k 
 ```
-(similar concept that we have used in largest subarray with 0 sum)<br>
 Time Complexity: O(N)<br>
 Space Complexity: O(N)
 ```cpp
