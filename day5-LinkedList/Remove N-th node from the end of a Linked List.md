@@ -1,7 +1,7 @@
 [Link](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
 # Remove N-th node from the end of a Linked List.
 Given the head of a linked list, remove the nth node from the end of the list and return its head.<br>
-***Example 1:***
+***Example 1:***<br>
 ![img](https://assets.leetcode.com/uploads/2020/10/03/remove_ex1.jpg)
 ```
 Input: head = [1,2,3,4,5], n = 2
