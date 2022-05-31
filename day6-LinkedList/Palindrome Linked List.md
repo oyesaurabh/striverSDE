@@ -1,7 +1,7 @@
 [Link](https://leetcode.com/problems/palindrome-linked-list/)
 # Palindrome Linked Lists
 Given the head of a singly linked list, return true if it is a palindrome.<br>
-***Example***
+***Example***<br>
 ![img](https://assets.leetcode.com/uploads/2021/03/03/pal1linked-list.jpg)
 ```
 Input: head = [1,2,2,1]
