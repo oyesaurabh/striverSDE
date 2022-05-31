@@ -23,3 +23,14 @@ Space : O(1)
         p->next=NULL;
     }
 ```
+## Solution: more simply copy
+Time : O(1)<br>
+Space : O(1)
+```cpp
+    void deleteNode(ListNode* node) {
+        ListNode *t=node->next;    //optional
+        node->val=node->next->val;
+        node->next=node->next->next;
+        delete t;                  //optional
+    }
+```
