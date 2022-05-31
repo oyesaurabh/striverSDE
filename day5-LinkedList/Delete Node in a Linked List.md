@@ -5,7 +5,7 @@ It is guaranteed that the node to be deleted is not a tail node in the list.
 <br>
 ![img](https://assets.leetcode.com/uploads/2020/09/01/node1.jpg)
 
-## Solution: simple copy
+## Solution: simple code
 Time : O(N)<br>
 Space : O(1)
 ```cpp
@@ -23,7 +23,7 @@ Space : O(1)
         p->next=NULL;
     }
 ```
-## Solution: more simple copy
+## Solution: more simple code
 Time : O(1)<br>
 Space : O(1)
 ```cpp
