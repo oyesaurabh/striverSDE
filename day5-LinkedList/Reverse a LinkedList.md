@@ -7,7 +7,7 @@ Given the head of a singly linked list, reverse the list, and return the reverse
 ## Reverse Linked List : Iterative
 Time Complexity: O(N)
 <br>
-Space Complexity: O(N)
+Space Complexity: O(1)
 
 ```cpp
     ListNode* reverseList(ListNode* head) {
