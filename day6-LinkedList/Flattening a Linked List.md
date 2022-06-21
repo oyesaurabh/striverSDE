@@ -40,13 +40,58 @@ node in a single level.
 
 (Note: | represents the bottom pointer.)
 ```
-## Solution : Merge Sort FTW
+## Solution : Multiset
 Time Complexity: O(N)<br>
-Space Complexity: O(1)
+Space Complexity: O(N)
 ```cpp
-Node *flatten(Node *root)
-{
+Node *flatten(Node *root){
    // Your code here
-   
+    multiset<int> set;
+    for(Node *r=root;r;r=r->next)
+        for(Node *t=r;t;t=t->bottom)
+            set.insert(t->data);
+    
+    Node *ans=new Node(0);
+    Node *ptr=ans;
+    for(auto it:set){
+        ptr->bottom=new Node(it);
+        ptr=ptr->bottom;
+    }
+    return ans->next;
+}
+```
+
+## Solution : MergeSort FTW 
+Time Complexity: O(N)<br>
+Space Complexity: O(1), ignoring recursion calls 
+```cpp
+Node* mergsort(Node *l1,Node *l2){
+    Node *head;
+    if(l1->data <= l2->data){
+        head=l1;
+        l1=l1->bottom;
+    }
+    else{
+        head=l2;
+        l2=l2->bottom;
+    }
+    Node *t=head;
+    while(l1 && l2){
+        if(l1->data <= l2->data)
+            t->bottom=l1,l1=l1->bottom;
+        else
+            t->bottom=l2,l2=l2->bottom;
+        t=t->bottom;
+    }
+    if(l1)t->bottom=l1;
+    if(l2)t->bottom=l2;
+    return head;
+}
+Node *flatten(Node *root){
+   // Your code here
+    if(root==NULL || root->next==NULL)return root;
+    root->next=flatten(root->next);
+    root=mergsort(root,root->next);
+    return root;
 }
 ```
