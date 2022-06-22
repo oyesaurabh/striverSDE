@@ -26,8 +26,8 @@ string fractionToDecimal(int n, int d) {
     	           ans+=to_string(q);
 	           }
 	       }
-	        return ans;
-	    }
+	    return ans;
+	}
 }
 int main(){
     //here
