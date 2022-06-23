@@ -60,3 +60,28 @@ Space : O(N)
     }
 ```
 ## Solution 3 : Most Optimized
+Time Complexity: O(length of list) + O(length of list – (length of list%k))
+
+Reason: O(length of the list) for calculating the length of the list. O(length of the list – (length of list%k)) for breaking link.
+
+Space Complexity: O(1)
+```cpp
+    ListNode* rotateRight(ListNode* head, int k) {
+        
+        if(head==NULL || head->next==NULL || k==0)return head;
+        
+        int len=1;
+        ListNode *t=head;
+        while(t->next)t=t->next,len++; //calculating length and last element
+        
+        t->next=head;
+        k=k%len;
+        int end=len - k;
+        while(end--)t=t->next;
+        
+        head=t->next;
+        t->next=NULL;
+        return head;
+    }
+
+```
