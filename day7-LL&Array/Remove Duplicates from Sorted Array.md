@@ -24,7 +24,7 @@ Space Complexity: O(n)
         return t;
     }
 ```
-## Solution 1 : Two pointers
+## Solution 2 : Two pointers
 Time complexity: O(n)<br>
 Space Complexity: O(1) 
 ```cpp
