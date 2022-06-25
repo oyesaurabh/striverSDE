@@ -18,4 +18,27 @@ Maximum four meetings can be held with
 given start and end timings.
 The meetings are - (1, 2),(3, 4), (5,7) and (8,9)
 ```
-## Solution :
+## Solution 
+Time : O(NlogN)+O(2N)
+Space : O(N)
+```cpp
+    static bool comp(pair<int,int>& p1,pair<int,int>& p2){
+        return p1.second < p2.second;
+    }
+    int maxMeetings(int start[], int end[], int n){
+        // Your code here
+        pair<int,int> a[n];
+        for(int i=0;i<n;i++)
+            a[i]={start[i], end[i] };
+            
+        sort(a, a+n, comp);
+        
+        int ans=1,pre=0;
+        
+        for(int i=1;i<n;i++)
+            if(a[i].first > a[pre].second)
+                pre=i,ans++;
+            
+        return ans;
+    }
+```
