@@ -1,5 +1,5 @@
 [link](https://practice.geeksforgeeks.org/problems/subset-sums2234/1)
-# Arranging Coins
+# Subset Sums
 Given a list arr of N integers, print sums of all subsets in it.
 ```
 Input:
