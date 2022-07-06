@@ -15,27 +15,28 @@ Output:
 ```cpp
 class Solution {
     vector<vector<int>> ans;
-    int l;
-public:
-    void fun(vector<int>& a,vector<int>& temp,int ind,int t){
-        if(t==0){
+    int n;
+    void solve(vector<int>& a,int target,vector<int> temp,int ind){
+        if(target==0){
             ans.push_back(temp);
             return;
         }
-        if(t<0)return;
-        for(int i=ind;i<l;i++){
-            if (i > ind && a[i] == a[i-1]) continue; //checking the previous number
-            // if its equal then ignore them...      
+        // if(target < 0)return;
+        for(int i=ind;i<n;i++){
+            if(i!=ind && a[i]==a[i-1])continue;
+            if(a[i]>target)return;
             temp.push_back(a[i]);
-            fun(a,temp,i+1,t-a[i]);                            
+            solve(a,target-a[i],temp,i+1);
             temp.pop_back();
         }
-    }
+    } 
+public:
     vector<vector<int>> combinationSum2(vector<int>& a, int t) {
-        l=a.size();
-        sort(a.begin(),a.end());
+        if(a.empty())return {}; 
+        sort(a.begin(), a.end());
+        n=a.size();
         vector<int> temp;
-        fun(a,temp,0,t);
+        solve(a,t,temp,0);
         return ans;
     }
 };
