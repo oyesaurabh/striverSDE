@@ -7,7 +7,8 @@ Given n non-negative integers representing an elevation map where the width of e
 ```
 Input: height = [0,1,0,2,1,0,1,3,2,1,2,1]
 Output: 6
-Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. In this case, 6 units of rain water (blue section) are being trapped.
+Explanation: The above elevation map (black section) is represented by array [0,1,0,2,1,0,1,3,2,1,2,1]. 
+In this case, 6 units of rain water (blue section) are being trapped.
 ```
 
 ## Solution 1 : Brute force TLE
@@ -57,22 +58,19 @@ Space : O(2\*N)
 Time Complexity: O(N)<br>
 Space Complexity: O(1)
 ```cpp
-    int trap(vector<int> a) {
-        int n=a.size();
-        int left=0,right=n-1;
-        int ans=0;
-        int maxleft=0, maxright=0;
-        
-        while(left<=right)
-            if(a[left]<=a[right]){
-                if(a[left]>=maxleft) maxleft=a[left];
-                else ans+=maxleft-a[left];
-                left++;
+    int trap(vector<int>& a) {
+        int i=0,j=a.size()-1;
+        int maxLeft=0,maxRight=0,ans=0;
+        while(i<=j)
+            if(a[i] <= a[j]){
+                if(maxLeft <= a[i])maxLeft=a[i];
+                else ans+=maxLeft-a[i];
+                i++;
             }
             else{
-                if(a[right]>=maxright) maxright= a[right];
-                else ans+=maxright-a[right];
-                right--;
+                if(maxRight <= a[j])maxRight=a[j];
+                else ans+=maxRight-a[j];
+                j--;
             }
         
         return ans;
