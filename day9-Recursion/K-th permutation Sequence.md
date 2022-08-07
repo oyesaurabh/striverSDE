@@ -46,6 +46,8 @@ public:
 };
 ```
 ## Solution :: (Optimal Approach Maths)
+Time Complexity: O(N) * O(N) = O(N^2)<br>
+Space Complexity: O(N)<br>
 **Intuition:**<br>
 Since this is a permutation we can assume that there are four positions that need to be filled using the four numbers of the sequence. First, we need to decide which number is to be placed at the first index. Once the number at the first index is decided we have three more positions and three more numbers.  Now the problem is shorter. We can repeat the technique that was used previously until all the positions are filled. The technique is explained below
 ```
@@ -89,8 +91,26 @@ Also K=K%1=0
 step 4
 Now the only block has 2 in the first position and no remaining number is present.
 3 4 1 2
-
 ```
-```cpp
 
+```cpp
+    string getPermutation(int n, int k) {
+        vector<int> numbers;//numbers from 1 to n
+        int fact=1;
+        for(int i=1;i<n;i++)
+            numbers.push_back(i), fact*=i; //here fact will contain size of each block eg. {1,2,3,4} fact=6.
+        numbers.push_back(n);
+
+        k=k-1; //zero based index
+        string ans="";
+        while(1){
+            ans+=to_string(numbers[ k/fact ]);    
+            numbers.erase(numbers.begin()+k/fact); // 3 + {1,2,4}
+            if(numbers.empty())
+                break;
+            k=k%fact;        // k=16%6=4
+            fact=fact/numbers.size();
+        }
+        return ans;
+    }
 ```
