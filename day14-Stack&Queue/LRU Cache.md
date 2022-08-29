@@ -25,5 +25,64 @@ lRUCache.get(4);    // return 4
 Time Complexity:O(N)<br>
 Space Complexity:O(1)
 ```cpp
+class LRUCache {
+    class node{
+        public:
+        int value,key;
+        node *pre,*next;
+        node(int key,int value){
+            this->value=value;
+            this->key=key;
+        }
+    };
+public:
+    node *head=new node(-1,-1);
+    node *tail=new node(-1,-1);
+    int cap;
+    unordered_map<int, node*> mp;
+    LRUCache(int capacity) {
+        cap=capacity;
+        head->next=tail;
+        tail->pre=head;
+    }
+    void add_(node *newnode){
+        newnode->next=head->next;
+        newnode->pre=head;
+        head->next=newnode;
+        newnode->next->pre=newnode;
+    }
+    void delete_(node *n){
+        node *delete_next=n->next;
+        node *delete_pre=n->pre;
+        delete_next->pre=delete_pre;
+        delete_pre->next=delete_next;
+    }
+    int get(int key) {
+        if(mp.find(key) != mp.end()){ //exist
+            auto node = mp[key];
+            // mp.erase(key);
+            // int result=node->value;
+            delete_(node);
+            add_(node);
+            // mp[key]=head->next;
+            return node->value;
+        }
+        return -1;
+    }
+    
+    void put(int key, int value) {
+        if(mp.find(key) != mp.end()){
+            node *temp=mp[key];
+            delete_(temp);
+            mp.erase(key);
+        }
+        if(cap==mp.size()){
+            mp.erase(tail->pre->key);
+            delete_(tail->pre);
+        }
+        add_(new node(key,value));
+        mp[key]=head->next;
+    }
+};
 
 ```
