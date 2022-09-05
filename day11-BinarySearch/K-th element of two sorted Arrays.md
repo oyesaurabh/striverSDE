@@ -59,7 +59,7 @@ Space : O(1)<br>
 ```
 ## Solution :: BinarySearch
 Time Complexity : log(min(m,n))<br>
-Space Complexity: O(1)<br>
+Space Complexity : O(1)<br>
 ```cpp
 
 ```
