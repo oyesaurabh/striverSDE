@@ -1,6 +1,47 @@
+# Recursive
+### 1. preOrder
+O(N) S(N)
+
+```cpp
+    void solve(TreeNode *r){
+        if(r){
+            ans.push_back(r->val);
+            solve(r->left);
+            solve(r->right);
+        }
+    }
+
+```
+### 2. InOrder
+O(N) S(N)
+
+```cpp
+    void solve(TreeNode *r){
+        if(r){
+            solve(r->left);
+            ans.push_back(r->val);
+            solve(r->right);
+        }
+    }
+```
+### 3. PostOrder
+O(N) S(N)
+
+```cpp
+    void solve(TreeNode *r){
+        if(r){
+            solve(r->left);
+            solve(r->right);
+            ans.push_back(r->val);
+        }
+    }
+
+```
 # Iterative
 
-### preOrder
+### 1. preOrder 
+O(N) S(N)
+
 ```cpp
 void Tree::preOrder(){
     stack<node *> s;
@@ -17,7 +58,10 @@ void Tree::preOrder(){
     }
 }
 ```
-### PostOrder
+### 2. PostOrder
+O(N) S(2N)
+
+using 2 stack
 ```cpp
 void Tree::postOrder2stack(){
     //using 2 stack
@@ -38,7 +82,15 @@ void Tree::postOrder2stack(){
     }
 }
 ```
-### InOrder
+O(N) S(N)
+
+using 1 stack
+```cpp
+
+```
+### 3. InOrder
+O(N) S(N)
+
 ```cpp
 void Tree::InOrder(){
     stack<node*> s;
@@ -58,7 +110,9 @@ void Tree::InOrder(){
     }
 }
 ```
-### levelOrder
+### 4. levelOrder
+O(N) S(N)
+
 ```cpp
 void Tree::levelOrder(){
     queue<node*> q;
