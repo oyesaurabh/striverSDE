@@ -1,9 +1,16 @@
 [Link](https://leetcode.com/problems/find-median-from-data-stream/)
+
 # Find Median from Data Stream
+
 The median is the middle value in an ordered integer list. If the size of the list is even, there is no middle value and the median is the mean of the two middle values.<br>
+
+```
 For example, for arr = [2,3,4], the median is 3.<br>
 For example, for arr = [2,3], the median is (2 + 3) / 2 = 2.5.<br>
-***Example 1:***
+```
+
+**_Example 1:_**
+
 ```
 Input
 ["MedianFinder", "addNum", "addNum", "findMedian", "addNum", "findMedian"]
@@ -19,21 +26,24 @@ medianFinder.findMedian(); // return 1.5 (i.e., (1 + 2) / 2)
 medianFinder.addNum(3);    // arr[1, 2, 3]
 medianFinder.findMedian(); // return 2.0
 ```
+
 ## Naive
-Time O(N*NlogN)<br>
+
+Time O(N\*NlogN)<br>
 Space O(N)
+
 ```cpp
 class MedianFinder {
     vector<int> t;
 public:
     MedianFinder() {
-        
+
     }
-    
+
     void addNum(int num) {
         t.push_back(num);
     }
-    
+
     double findMedian() {
         int n=t.size();
         sort(t.begin(), t.end());
@@ -43,20 +53,23 @@ public:
     }
 };
 ```
+
 ## Min_heap and Max_heap
+
 TIme : O(LogN)<br>
 Space : O(N)
+
 ```cpp
 class MedianFinder {
     priority_queue<int> max_heap;
     priority_queue<int,vector<int>,greater<int>> min_heap;
 public:
     MedianFinder() {
-        
+
     }
-    
+
     void addNum(int num) {
-        
+
         if(max_heap.empty() && min_heap.empty()){
             max_heap.push(num);
             return;
@@ -76,11 +89,11 @@ public:
                 int t=max_heap.top();
                 max_heap.pop();
                 min_heap.push(t);
-            }            
+            }
         }
-        
+
     }
-    
+
     double findMedian() {
         int sum=max_heap.size()+min_heap.size();
         if(sum%2)
